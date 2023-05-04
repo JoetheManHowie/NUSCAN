@@ -2,17 +2,27 @@
 
 import numpy as np
 import sys
-
+import pickle
 
 def main():
     path = sys.argv[1]
-    fuel = sys.argv[2]
-    savefile = f"{path}/{fuel}.sorted"
-    edgelist, missing = import_graph(path, fuel)
-    new_edgelist = make_new_graph(edgelist, missing)
+    inname = sys.argv[2]
+    save_map_flag = False
+    if len(sys.argv) > 3:
+        unknown = bool(sys.argv[3])
+        if unknown == True:
+            save_map_flag = True        
+
+    fuel = inname.split(".")[0]
+    savefile = f"{path}/{fuel}.renumered"
+    edgelist, missing = import_graph(path, inname)
+    new_edgelist, vm = make_new_graph(edgelist, missing)
     save_graph(new_edgelist, savefile)
+    if save_map_flag:
+        nom = f"{path}/{fuel}.pickle"
+        save_vertex_map(vm, nom)
 
-
+    
 def save_graph(new_edgelist, savefile):
     with open(savefile, "w") as f:
         for u, v, p in new_edgelist:
@@ -20,44 +30,34 @@ def save_graph(new_edgelist, savefile):
 
 
 def make_new_graph(edgelist, missing):
-
-
     # Determine the current highest vertex number
     max_vertex = max(max(edge) for edge in edgelist)
 
     # Create a mapping of old vertex numbers to new vertex numbers
-    #vertex_map = {old: new for new, old in enumerate(range(max_vertex + 1)) if old not in missing}
     vertex_map = dict()
     count = 0
+    ## this can be slow for large graphs, improvements are welcome
     for old in range(max_vertex+1):
         if old in missing:
             continue
         vertex_map[old] = count
-        count+=1
-        
+        count+=1    
     # Create the new edgelist with updated vertex numbers
-    new_edgelist = []
-    for u, v, p in edgelist:
-        new_u = vertex_map[u]
-        new_v = vertex_map[v]
-        new_edgelist.append((new_u, new_v, p))
+    new_edgelist = [ (vertex_map[u], vertex_map[v], p) for u, v, p in edgelist]
+    return new_edgelist, vertex_map
 
-    return new_edgelist
-"""
-    new_edgelist = np.copy(edgelist)
-    for missed in missing:
-        old_name = missed - 1
-        print(missed)
-        ind = np.where(new_edgelist[:,0] == old_name)[0]
-        print(ind)
-        new_edgelist[ind, 0] = missed
-    return new_edgelist
-"""
+
+def save_vertex_map(vm, saveloc):
+    print(saveloc)
+    vm_file = open(saveloc, 'wb')
+    pickle.dump(vm, vm_file)
+    vm_file.close()
+
 
 def import_graph(path, fuel):
     edgelist = []
     missing = []
-    with open(path+fuel, "r") as el:
+    with open(f"{path}/{fuel}", "r") as el:
         last_u = -1
         for line in el:
             u, v, p = line.rstrip().split()
