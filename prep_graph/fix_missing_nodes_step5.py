@@ -58,18 +58,16 @@ def import_graph(path, fuel):
     edgelist = []
     missing = []
     with open(f"{path}/{fuel}", "r") as el:
-        last_u = -1
+        nodes = set()
         for line in el:
             u, v, p = line.rstrip().split()
             u = int(u)
             v = int(v)
             p = int(float(p)*1000)
-
-            if u - last_u > 1:
-                missing.append(u-1)
+            nodes.add(u)
             arr = [u,v,p]
-            last_u = u
             edgelist.append(arr)
+        missing = sorted(list(set(range(max(nodes))).difference(nodes)))
     edgelist = np.array(edgelist)
     missing = np.array(missing)
     return edgelist, missing
