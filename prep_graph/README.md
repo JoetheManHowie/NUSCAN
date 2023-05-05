@@ -7,7 +7,10 @@ The requirements are listed below.
 ## Python dependencies
 -----------------------
 The scripts in this directory use the following pip installable modules:
+
 `pip install numpy`
+
+Along with modules in the python standard library.
 
 # Dataset Requirements
 -----------------------
@@ -28,12 +31,26 @@ Note that both algorithms are for undirected graph but we need to include revers
 ## Checking code
 -----------------
 
-For uscan and nuscan to be able to process graph they need to meet the following requirements.
+The following .py files are used to check requirements 1 through 5:
 
+1. `symmetry_check_step1.py`
+2. `p_check_step2.py`
+3. _not inmplemented_
+4. `self_loop_check_step4.py`
+5. `numbering_check_step5.py`
+
+We did not write a program to check if the graphs where sorted since we used the bash command `sort`.
 
 ## Modifying code
 ---------------
 
+The following .py files are used to apply requirements 1 through 5:
+
+1. `make_symmetric_step1.py`
+2. `p_bounds_step2` -- not implemented, since none of our graphed requied such a function.
+3. `doubly_sort_step3.py`
+4. `remove_self_loops_step4.py` -- implemented, but never needed.
+5. `fix_missing_nodes_step5.py`
 
 # Our method
 ---------------
