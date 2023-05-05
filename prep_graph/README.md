@@ -4,6 +4,10 @@
 This directory contains scripts that are designed to test whether a dataset meets the requirements for a graph to successfully on USCAN and NUSCAN.
 The requirements are listed below.
 
+Every .py file in this directory are executables and take one command line aregument, the path to the graph.
+
+`./<python executable> <path to graph>`
+
 ## Python dependencies
 -----------------------
 The scripts in this directory use the following pip installable modules:
@@ -39,7 +43,7 @@ The following .py files are used to check requirements 1 through 5:
 4. `self_loop_check_step4.py`
 5. `numbering_check_step5.py`
 
-We did not write a program to check if the graphs where sorted since we used the bash command `sort`.
+We did not write a program to check if the graphs were sorted (step 3) since we sorted them with the bash command `sort`.
 
 ## Modifying code
 ---------------
