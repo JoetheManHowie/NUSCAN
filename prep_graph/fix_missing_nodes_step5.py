@@ -5,21 +5,23 @@ import sys
 import pickle
 
 def main():
-    path = sys.argv[1]
-    inname = sys.argv[2]
+    pathfile = sys.argv[1]
+    pathl = pathfile.split("/")
+    inname = pathl[-1] 
+    path = '/'.join(pathl[:-1])
     save_map_flag = False
     if len(sys.argv) > 3:
         unknown = bool(sys.argv[3])
         if unknown == True:
             save_map_flag = True        
 
-    fuel = inname.split(".")[0]
-    savefile = f"{path}/{fuel}.renumered"
+    base = inname.split(".")[0]
+    savefile = f"{path}/{base}.renumered"
     edgelist, missing = import_graph(path, inname)
     new_edgelist, vm = make_new_graph(edgelist, missing)
     save_graph(new_edgelist, savefile)
     if save_map_flag:
-        nom = f"{path}/{fuel}.pickle"
+        nom = f"{path}/{base}.pickle"
         save_vertex_map(vm, nom)
 
     
@@ -54,10 +56,10 @@ def save_vertex_map(vm, saveloc):
     vm_file.close()
 
 
-def import_graph(path, fuel):
+def import_graph(path, base):
     edgelist = []
     missing = []
-    with open(f"{path}/{fuel}", "r") as el:
+    with open(f"{path}/{base}", "r") as el:
         nodes = set()
         for line in el:
             u, v, p = line.rstrip().split()

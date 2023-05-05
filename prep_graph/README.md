@@ -42,7 +42,7 @@ The step numbers here correspond to the requirement numbers above.
 0. All the datasets we worked with were found in the edgelist form and some had probabilities to start.
 1. We check that the graph is symmetric using `symmetry_check_step1.py`, and if is not symmetric we run the graph through `make_symmetric_step1.py`.
 2. Next `p_check_step2.py` determines which edges, if any, have probabilities of zero or one. Then `p_bounds_step2.py` adjusts any $0$ or $1$ weights to $0.001$ and $0.999$ respectively.
-3. Then by running the bash command `sort -o -n -k1,2 <graph.txt>` the graph becomes sorted by the firstcolumn and then by the second column.
+3. Then by running `doubly_sort_step3.py` the graph becomes sorted by the first column and then by the second column.
 4. Any self loops found with `self_loop_check_step4.py` are removed from the graph with `remove_self_loops_step4.py`.
 5. Finally, `numbering_check_step5.py` to determine if any vertex indicies are missing, and if there are correct the numbering with `fix_missing_nodes_step5.py`. Note if the orginial numbering is important to the data, add a `True` flag to the command for `fix_missing_nodes_step5.py` and a pickle file will be saved to the same directory and the new graph file that holds the mapping of nodes.
 
