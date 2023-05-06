@@ -163,6 +163,10 @@ void Graph::initializeGraph(string eta_s, string epsilon_s, string mu_s, string 
   this->thres = atoi(thres_s.c_str());
   // cout<<"init binHeap"<<endl;
   binHeap.init(nodes, vsize);
+  // init ku for later
+  for (int u = 0; u<vsize; u++)
+    for (int i = 0; i<nodes[u].degree-1; i++)
+      nodes[u].edges[i].ku = 0;
 }
 
 void Graph::localCluster(string eta_s, string epsilon_s, string mu_s, string thres_s)
@@ -187,7 +191,8 @@ void Graph::saveProbability()
   ofstream fout((filename + "-" + eta_s + "-" + epsilon_s + "-" + mu_s + "-" + thres_s + ".prob_nuscan").c_str());
   for (int u = 0; u<vsize; u++)
     for (int i = 0; i<nodes[u].degree-1; i++)
-        fout <<u << " "<<nodes[u].edges[i].end << " "<< nodes[u].edges[i].sigma<<" "<<nodes[u].edges[i].ku<<" "<<nodes[u].edges[i].time<<"\n";
+      if (u<nodes[u].edges[i].end)
+	fout <<u << " "<<nodes[u].edges[i].end << " "<< nodes[u].edges[i].proba <<" "<< nodes[u].edges[i].sigma<<" "<<nodes[u].edges[i].ku<<" "<<nodes[u].edges[i].time<<"\n";
 }
 
 void Graph::outputLocalResult()
@@ -226,16 +231,19 @@ void Graph::outputLocalResult()
       //fout<<"cid: "<<iter->first<<endl;
       for (auto j = iter->second.begin(); j != iter->second.end(); ++j)
 	{
-	  fout << *j << " ";
+	  if (nodes[*j].type ==1)
+	    fout << *j << "_c ";
+	  if (nodes[*j].type ==2)
+	    fout << *j << "_n ";
 	}
       fout <<"\n";
     }
   for (int i = 0; i < vsize; ++i)
     {
       if (nodes[i].type == 3)
-	fout<<i<<" hub"<<endl;
+	fout<<i<<"_h"<<endl;
       else if (nodes[i].type == 4)
-	fout<<i<<" outlier"<<endl;
+	fout<<i<<"_o"<<endl;
     }
 }
 

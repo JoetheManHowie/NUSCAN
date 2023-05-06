@@ -4,17 +4,35 @@ import numpy as np
 import pandas as pd
 import sys
 import torch
+import itertools
 
 def main():
-    u_file = sys.argv[1]
-    n_file = sys.argv[2]
+    ffile = sys.argv[1]
     # extract the t value from nuscan file name
-    ttt = int(n_file.split("-")[-1].split(".cluster")[0])+2
-    u_data = load_data(u_file)
-    n_data = load_data(n_file)
+    clusters = load_clusters(ffile)
+    graph = 0
+
+
+def AED(G, C):
+    total_expected_density = 0
+    total_clusters = 0
+    for cluster in C:
+        cluster_expected_density = 0
+        for i, j in itertools.combinations(cluster, 2):
+            if (i, j) in G:
+                prob = G[(i, j)]
+            elif (j, i) in G:
+                prob = G[(j, i)]
+            else:
+                continue
+            cluster_expected_density += prob
+        total_expected_density += cluster_expected_density / (len(cluster) * (len(cluster) - 1) / 2)
+        total_clusters += 1
+    return total_expected_density / total_clusters
+
     
 
-def load_data(this_file):
+def load_clusters(this_file):
     clusters = list()
     with open(this_file, "r") as mf:
         for line in mf:

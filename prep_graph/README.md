@@ -72,3 +72,4 @@ The step numbers here correspond to the requirement numbers above.
 ## Adding Probabilities
 ------------------------
 
+There are some large datasets that we used in experiments that did not have probability weights. In these cases we induces probabilities from different probabilitiy distribution functions (pdfs). In these cases we have writen a python script for step 0, that takes a edgelist txt file and adds probabilities to the edges.  

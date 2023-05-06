@@ -8,20 +8,31 @@ import torch
 def main():
     u_file = sys.argv[1]
     n_file = sys.argv[2]
+
     # extract the t value from nuscan file name
-    ttt = int(n_file.split("-")[-1].split(".cluster")[0])+2
+    ##ttt = int(n_file.split("-")[-1].split(".cluster")[0])+2
+
     u_data = load_data(u_file)
     n_data = load_data(n_file)
 
-    print(check_clusters(u_data, n_data))
+    print(get_lengths(u_data))
+    print(get_lengths(n_data))
+
+    print(check_clusters(u_data[0], n_data[0]))
+    print(ratio(u_data[1], n_data[1]))
+    print(ratio(u_data[2], n_data[2]))
+    print(ratio(u_data[3], n_data[3]))
+    print(ratio(u_data[4], n_data[4]))
 
 
-def check_clusters(d1, d2):
+def check_clusters(clus1, clus2):
     jacc = list(list())
-    subs = d2[0]
-    
-    for c1 in d1[0]:
+    subs = clus2
+    unmatched = list()
+    ### gets jaccard simiarlity of closely (>0.5) matching sets of clusters
+    for c1 in clus1:
         ans = 0
+        flag = False
         for i in range(len(subs)):
             c2 = subs[i]
             s1 = set(c1)
@@ -33,47 +44,76 @@ def check_clusters(d1, d2):
                 ans = it/un
             if ans > 0.5:
                 del subs[i]
+                flag = True
                 break
-        jacc.append(ans)
-
-            
+        if flag:
+            jacc.append(ans)
+        else:
+            unmatched.append(c1)
+    ## unmatched clusters
+    
+    ### mean jaccard similarity ###
     jac = 1
     if len(jacc) !=0:
         jac = np.mean(jacc)
-    hub_ratio = 0
-    if len(d1[1])==0 and len(d2[1])==0:
-        hub_ratio=1
-    elif len(d2[1]) == 0:
-        hub_ratio=0
-    else:
-        hub_ratio = len(d1[1])/len(d2[1])
-    
-    outlier_ratio = 0
-    if len(d1[2])==0 and len(d2[2])==0:
-        outlier_ratio=1
-    elif len(d2[2]) == 0:
-        outlier_ratio=0
-    else:
-        outlier_ratio = len(d1[2])/len(d2[2])
 
-    return jac, hub_ratio, outlier_ratio
+    return jac, unmatched, subs
 
-    
+def ratio(x1, x2):
+    rat = 0
+    if len(x1)==0 and len(x2)==0:
+        rat=1
+    elif len(x2) == 0:
+        rat=0
+    else:
+        rat = len(x1)/len(x2)
+    return rat
+
+def get_lengths(data):
+    return [len(d) for d in data]
+
 def load_data(this_file):
+    
     clusters = list()
     hubs = list()
     outliers = list()
+    cores = list()
+    noncores = list()
+    spt = "_"
     with open(this_file, "r") as mf:
         for line in mf:
-            line = line.strip()
-            if line.endswith("hub"):
-                hubs.append(int(line.split()[0]))
-            elif line.endswith("outlier"):
-                outliers.append(int(line.split()[0]))
+            line = line.rstrip()
+            #print(line)
+            if line.endswith("_h"):
+                hubs.append(int(line.split(spt)[0]))
+            elif line.endswith("_o"):
+                outliers.append(int(line.split(spt)[0]))
             else:
-                clusters.append([int(num) for num in line.split()])
-    return clusters, hubs, outliers
-    
+                '''
+                core = list()
+                cluster = list()
+                nonc = list()
+                for  num in line.split():
+                    nu, ty = num.split(spt)
+                    nn = int(nu)
+                    if ty == "n":
+                        nonc.append(nn)
+                        #print(nu, ty)
+                    elif ty =="c":
+                        print(nu, ty)
+                        core.append(nn)
+                    cluster.append(nn)
+                cores.append(core)
+                noncores.append(nonc)
+                clusters.append(cluster)
+                '''
+                cores.extend([int(num.split(spt)[0]) for num in line.split() if num.split(spt)[1]=="c"])
+                noncores.extend([int(num.split(spt)[0]) for num in line.split() if num.split(spt)[1]=="n"])
+                clusters.append([int(num.split(spt)[0]) for num in line.split()])
+                
+    return clusters, hubs, outliers, cores, noncores
+
+
 
 if __name__=="__main__":
     main()

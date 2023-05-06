@@ -16,7 +16,7 @@ def main():
             save_map_flag = True        
 
     base = inname.split(".")[0]
-    savefile = f"{path}/{base}.renumered"
+    savefile = f"{path}/{base}.sorted"
     edgelist, missing = import_graph(path, inname)
     new_edgelist, vm = make_new_graph(edgelist, missing)
     save_graph(new_edgelist, savefile)

@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
   cout<<argv[2]<<" "; // eta value
   cout<<argv[3]<<" "; // epsilon value
   cout<<argv[4]<<" "; // mu value
+  cout<<argv[5]<<" "; // thres t value
   cout<<(double)(end - end1) / CLOCKS_PER_SEC<<" "; // time elapsed
   g.printNumberClusters(); // number of cores (not clusters)
   g.summarizeCluster(); // more ... (clusters, hubs, outliers)
