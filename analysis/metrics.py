@@ -10,10 +10,12 @@ def main():
     adj_list = get_adj_list(edges)
     cluster_coefficient = calculate_cluster_coefficient(adj_list)
     max_degree, ave_degree = count_degrees(adj_list)
-
+    '''
     print(f"Cluster coefficient: {cluster_coefficient}")
     print(f"Average degree: {ave_degree}")
     print(f"Maximun degree: {max_degree}")
+    '''
+    print(max(max(edges))+1, len(edges)//2, cluster_coefficient, max_degree, ave_degree)
     
 def load_data(filename):
     # read in graph as an edgelist from command line
