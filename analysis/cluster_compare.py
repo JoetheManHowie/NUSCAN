@@ -18,11 +18,21 @@ def main():
     print(get_lengths(u_data))
     print(get_lengths(n_data))
 
-    print(check_clusters(u_data[0], n_data[0]))
-    print(ratio(u_data[1], n_data[1]))
-    print(ratio(u_data[2], n_data[2]))
-    print(ratio(u_data[3], n_data[3]))
-    print(ratio(u_data[4], n_data[4]))
+    jac, umu, umn = check_clusters(u_data[0], n_data[0])
+    hub_ratio = ratio(u_data[1], n_data[1])
+    outlier_ratio = ratio(u_data[2], n_data[2])
+    core_ratio = ratio(u_data[3], n_data[3])
+    noncore_ratio = ratio(u_data[4], n_data[4])
+    print(f"Average Jaccard of cluster sets = {jac:.4f}")
+    print(f"Unmatched USCAN sets:", umu, sep="\n")
+    print(f"Number of unmatched clusters in USCAN = {len(umu)}")
+    print(f"Unmatched NUSCAN sets:", umn, sep="\n")
+    print(f"Number of unmatched clusters in NUSCAN = {len(umn)}")
+    print(f"All ratios are USCAN/NUSCAN, and in the range [0, {np.inf})")
+    print(f"hub ratio = {hub_ratio}")
+    print(f"outlier ratio = {outlier_ratio}")
+    print(f"core ratio = {core_ratio}")
+    print(f"non-core ratio = {noncore_ratio}")
 
 
 def check_clusters(clus1, clus2):

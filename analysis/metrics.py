@@ -13,8 +13,6 @@ def main():
     print(f"Average degree: {ave_degree}")
     print(f"Maximun degree: {max_degree}")
     
-    
-    
 def load_data(filename):
     # read in graph as an edgelist from command line
     with open(filename, 'r') as f:

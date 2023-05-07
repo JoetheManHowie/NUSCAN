@@ -26,5 +26,7 @@ In general to execute the analysis that was done in our paper the following sets
 2. Run the graph through both clustering algorithms with the output option to generate the txt files with the probabilities $P[e, \varepsilon]$ for each e and another txt file with the cluster sets, hubs, and outliers. See [`uscan/`](https://github.com/JoetheManHowie/NUSCAN/tree/main/uscan) and [`nuscan/`](https://github.com/JoetheManHowie/NUSCAN/tree/main/nuscan) for more details.
 3. Analyze results - there are some scripts that compute cluster quality, compare $P[e, \varepsilon]$ between both methods, compare cluster, hub, outlier sets. See [`analysis/`](https://github.com/JoetheManHowie/NUSCAN/tree/main/analysis) for more direction.
 
+### Notes
 
-
+Both NUSCAN and USCAN have the option to output two text files one called `<graphfile>-eta-eps-mu-thres.cluster_nuscan` and `<graphfile>-eta-eps-mu-thres.prob_nuscan` (for uscan the thres is not present and the suffix is "_uscan").
+The two files are required to run the code in [`analysis/`](https://github.com/JoetheManHowie/NUSCAN/tree/main/analysis), as the code assumes the formatting produced by NUSCAN and USCAN. See [`uscan/`](https://github.com/JoetheManHowie/NUSCAN/tree/main/uscan) and [`nuscan/`](https://github.com/JoetheManHowie/NUSCAN/tree/main/nuscan) for more information on the files produced, and see [`analysis/`](https://github.com/JoetheManHowie/NUSCAN/tree/main/analysis) for more information on the analyzes preformed on the files.
