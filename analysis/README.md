@@ -33,7 +33,7 @@ The jaccard similarities are computed by iterating over the clusters in USCAN an
 ### Comparing Lyapunov CLT to DP method
 
 We want to compare the two methods of calculating $P[e, \varepsilon]$ to observe the time saved and approximation quality.
-To locally compare the quality of the clusters we compare the probabilities $P[e, \varepsilon]$ calculated by both algorithms. Since not every edge passes through these algorithms due to $\eta$ pruning and number of common neighbours, we only compare the edges that pass through the different methods. We can compute K-L Divergence, RMSE, and the time improvements from the .prob_nuscan and .prob_uscan files produced by running the respective algorithms. We can execute the follow code:
+To locally compare the quality of the clusters we compare the probabilities $P[e, \varepsilon]$ calculated by both algorithms. Since not every edge passes through these algorithms due to $\eta$ pruning and number of common neighbours, we only compare the edges that pass through the different methods. We can compute K-L Divergence, RMSE, and the time improvements from the .prob_nuscan and .prob_uscan files produced by running the respective algorithms. We can execute the code [`compare_nuscan_to_uscan.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/analysis/compare_nuscan_to_uscan.py):
 
 `./compare_nuscan_to_uscan.py <path to .prob_uscan> <path to .prob_nuscan>`
 
@@ -44,7 +44,7 @@ And this prints the following output:
 
 ### Cluster quality metrics
 
-There are two metrics we used to measure the quality of clusters when there is no ground truth. The two metrics were $AED$ and $Q{ANUI}$ and we run the following code to calculate both values from the .cluster_nuscan and .prob_nuscan (or _uscan) files.
+There are two metrics we used to measure the quality of clusters when there is no ground truth. The two metrics were $AED$ and $Q{ANUI}$ and we run the code [`aed_anui.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/analysis/aed_anui.py)  to calculate both values from the .cluster_nuscan and .prob_nuscan (or _uscan) files.
 
 `./aed_anui.py <path to .cluster_nuscan> <path to .prob_nuscan>`
 
