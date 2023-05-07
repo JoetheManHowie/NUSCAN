@@ -1,7 +1,7 @@
 # uscan
 --------------
 
-**Remarks:** Special thanks to the author of [Qiu et. al.](https://ieeexplore.ieee.org/abstract/document/8476242) for providing their source code for uscan, that we modified in order to implement nuscan.
+**Remarks:** Special thanks to the author of [Qiu et. al.](https://ieeexplore.ieee.org/abstract/document/8476242) for providing their source code for uscan, that we modified in order to implement [`nuscan`](https://github.com/JoetheManHowie/NUSCAN/blob/main/nuscan/).
 
 Here is the c++ code for the USCAN clustering algorithm. The code can be modified and integrated with other c++ applications. The algorithm is composed of four .cpp files and four .h files.
 
