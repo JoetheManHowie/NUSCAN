@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import sys
 import numpy as np
+# for formatted graph file (pre-cluster)
+# ex: ./metrics.py <path-to-graph-file>
 
 def main():
     filename = sys.argv[1]
@@ -23,6 +25,7 @@ def get_adj_list(edges):
     # create adjacency list
     adj_list = {}
     for u, v in edges:
+        if u >v: continue
         if u not in adj_list:
             adj_list[u] = set()
         if v not in adj_list:

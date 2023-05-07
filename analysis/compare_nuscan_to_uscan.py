@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
-## ./compare_nuscan_to_uscan.py <uscan_prob_file> <nuscan_prob_file>
-
-### NORMALIZE the sum!!!!!
-
 import numpy as np
 import pandas as pd
 import sys
+
+## compares differences between DP method and L-CLT computed P[e, epsilon] values and times to compute edges 
+## ./compare_nuscan_to_uscan.py <path-to-.prob_uscan> <path-to-.prob_nuscan>
 
 def main():
     columns=["u", "v", "prob", "p", "k", "t"]

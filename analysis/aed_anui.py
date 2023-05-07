@@ -5,6 +5,10 @@ import pandas as pd
 import sys
 import torch
 import itertools
+# for nuscan files
+# ex: ./aed_anui.py <path-to-*.cluster_nuscan> <path-to-*.prob_nuscan>
+# or for uscan files 
+# ex: ./aed_anui.py <path-to-*.cluster_uscan> <path-to-*.prob_uscan> 
 
 def main(debug=False):
     # get text files from command line

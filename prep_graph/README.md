@@ -39,7 +39,7 @@ The following .py files are used to check requirements 1 through 5:
 
 1. [`symmetry_check_step1.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/prep_graph/symmetry_check_step1.py)
 2. [`p_check_step2.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/prep_graph/p_check_step2.py)
-3.  _not inmplemented_
+3.  _not implemented_
 4. [`self_loop_check_step4.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/prep_graph/self_loop_check_step4.py)
 5. [`numbering_check_step5.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/prep_graph/numbering_check_step5.py)
 
@@ -51,7 +51,7 @@ We did not write a program to check if the graphs were sorted (step 3) since we 
 The following .py files are used to apply requirements 1 through 5:
 
 1. [`make_symmetric_step1.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/prep_graph/make_symmetric_step1.py)
-2. `p_bounds_step2` _-- not implemented, since none of our graphed requied such a function._
+2. `p_bounds_step2.py` _-- not implemented, since none of our graphed requied such a function._
 3. [`doubly_sort_step3.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/prep_graph/doubly_sort_step3.py)
 4. [`doubly_sort_step3.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/prep_graph/remove_self_loops_step4.py) _-- implemented, but never needed._
 5. [`fix_missing_nodes_step5.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/prep_graph/fix_missing_nodes_step5.py)
@@ -72,4 +72,4 @@ The step numbers here correspond to the requirement numbers above.
 ## Adding Probabilities
 ------------------------
 
-There are some large datasets that we used in experiments that did not have probability weights. In these cases we induces probabilities from different probabilitiy distribution functions (pdfs). In these cases we have writen a python script for step 0, that takes a edgelist txt file and adds probabilities to the edges.  
+There are some large datasets that we used in experiments that did not have probability weights. In these cases we induces probabilities from different probabilitiy distribution functions (pdfs). In these cases we have writen a python script for step 0, that takes an edgelist txt file and adds probabilities to the edges.  
