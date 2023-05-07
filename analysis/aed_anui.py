@@ -14,8 +14,15 @@ def main(debug=False):
     # get text files from command line
     ffile = sys.argv[1]
     efile = sys.argv[2]
-    path, eta, eps, mu, end = ffile.split("-")
-    thres, ftype = end.split(".")
+    file_name = ffile.split("-")
+    thres = ""
+    if len(file_name) > 4:
+        path, eta, eps, mu, end = file_name
+        thres = end.split(".")[0]
+    elif len(file_name) == 4:
+        path, eta, eps, mu_end = file_name
+        mu = mu_end.split(".")[0]
+
     #suffix = ftype.split("_")[1]
         
     # get list of clusters

@@ -17,14 +17,17 @@ def main():
     u_data = load_data(u_file)
     n_data = load_data(n_file)
 
-    print(get_lengths(u_data))
-    print(get_lengths(n_data))
+    #print(get_lengths(u_data))
+    #print(get_lengths(n_data))
 
     jac, umu, umn = check_clusters(u_data[0], n_data[0])
     hub_ratio = ratio(u_data[1], n_data[1])
     outlier_ratio = ratio(u_data[2], n_data[2])
     core_ratio = ratio(u_data[3], n_data[3])
     noncore_ratio = ratio(u_data[4], n_data[4])
+    # ratios are unscan/nuscan
+    print(jac, len(umu), count_list(umu), len(umn), count_list(umn), hub_ratio, outlier_ratio, core_ratio, noncore_ratio)
+    '''
     print(f"Average Jaccard of cluster sets = {jac:.4f}")
     print(f"Unmatched USCAN sets:", umu, sep="\n")
     print(f"Number of unmatched clusters in USCAN = {len(umu)}")
@@ -35,14 +38,23 @@ def main():
     print(f"outlier ratio = {outlier_ratio}")
     print(f"core ratio = {core_ratio}")
     print(f"non-core ratio = {noncore_ratio}")
+    '''
+    
+def count_list(lis):
+    return len([len(u) for u in lis])
 
-
+def sort_lol(lis):
+    return sorted(lis, key=lambda x: len(x), reverse=True)
+    
 def check_clusters(clus1, clus2):
+    sc1 = sort_lol(clus1)
+    sc2 = sort_lol(clus2)
     jacc = list(list())
-    subs = clus2
+    subs = sc2
     unmatched = list()
     ### gets jaccard simiarlity of closely (>0.5) matching sets of clusters
-    for c1 in clus1:
+    for c1 in sc1:
+        #print(len(c1))
         ans = 0
         flag = False
         for i in range(len(subs)):
