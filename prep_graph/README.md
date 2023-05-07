@@ -41,7 +41,7 @@ The following .py files are used to check requirements 1 through 5:
 2. [`p_check_step2.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/prep_graph/p_check_step2.py)
 3.  _not inmplemented_
 4. [`self_loop_check_step4.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/prep_graph/self_loop_check_step4.py)
-5. [`numbering_check_step5.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/prep_graph/numbering_check_step5.py
+5. [`numbering_check_step5.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/prep_graph/numbering_check_step5.py)
 
 We did not write a program to check if the graphs were sorted (step 3) since we sorted them with the bash command `sort`.
 
