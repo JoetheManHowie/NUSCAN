@@ -29,5 +29,5 @@ The presence of the string `output` will make the program create the two output 
 
 ### Remarks
 -----------
-Special thanks to the author of [Qiu et. al.](https://ieeexplore.ieee.org/abstract/document/8476242) for providing their source code for ['uscan'](https://github.com/JoetheManHowie/NUSCAN/blob/main/uscan/) upon which the nuscan frame work was implemented.
+Special thanks to the author of [Qiu et. al.](https://ieeexplore.ieee.org/abstract/document/8476242) for providing their source code for [`uscan`](https://github.com/JoetheManHowie/NUSCAN/blob/main/uscan/) upon which the nuscan frame work was implemented.
 

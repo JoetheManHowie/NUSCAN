@@ -72,4 +72,12 @@ The step numbers here correspond to the requirement numbers above.
 ## Adding Probabilities
 ------------------------
 
-There are some large datasets that we used in experiments that did not have probability weights. In these cases we induces probabilities from different probabilitiy distribution functions (pdfs). In these cases we have writen a python script for step 0, that takes an edgelist txt file and adds probabilities to the edges.  
+There are some large datasets that we used in experiments that did not have probability weights. In these cases we induces probabilities from different probabilitiy distribution functions (pdfs). In these cases we have writen a python script for step 0, that takes an edgelist txt file and adds probabilities to the edges.
+
+We used the executeable [`alter_weights_step0.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/prep_graph/alter_weights_step0.py) to read graph files that were already processed, and change the weights to be from specific probability distribution without altering any of the 5 requirements.
+
+The python code takes three arguments,
+
+`./alter_weights_step0.py <path> <graph> <distribution>`
+
+and returns a graph file with the new weights. So if the name of the input graph was `graph.txt` and you ran `./alter_weights_step0.py . graph.txt normal` would produce a graph called `graph.normal` in the directory `<path>`.
