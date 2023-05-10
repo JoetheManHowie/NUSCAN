@@ -6,10 +6,10 @@ from time import time
 
 def main():
     '''removes self loops and makes symmetric'''
-    with FileInput(sys.argv[1], inplace = True, backup = '.bak') as filename:
+    with FileInput(sys.argv[1], inplace = True) as filename:
         for line in filename:
             u, v, p = line.rstrip().split()
-            if u>v: continue
+            if u>=v: continue
             print(u+"\t"+v+"\t"+ p)
             print(v+"\t"+u+"\t"+ p)
             
