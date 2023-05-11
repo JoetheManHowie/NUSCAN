@@ -12,8 +12,9 @@ def main():
     n_file = sys.argv[2]
 
     # extract the t value from nuscan file name
-    ##ttt = int(n_file.split("-")[-1].split(".cluster")[0])+2
-
+    #ttt = int(n_file.split("-")[-1].split(".cluster")[0])+2
+    path, eta, eps, mu, end = n_file
+    thres = end.split(".")[0]
     u_data = load_data(u_file)
     n_data = load_data(n_file)
 
@@ -26,7 +27,7 @@ def main():
     core_ratio = ratio(u_data[3], n_data[3])
     noncore_ratio = ratio(u_data[4], n_data[4])
     # ratios are unscan/nuscan
-    print(jac, len(umu), count_list(umu), len(umn), count_list(umn), hub_ratio, outlier_ratio, core_ratio, noncore_ratio)
+    print(eta, eps, mu, thres, jac, len(umu), count_list(umu), len(umn), count_list(umn), hub_ratio, outlier_ratio, core_ratio, noncore_ratio)
     '''
     print(f"Average Jaccard of cluster sets = {jac:.4f}")
     print(f"Unmatched USCAN sets:", umu, sep="\n")

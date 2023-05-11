@@ -25,7 +25,7 @@ To globally compare the cluster sets, hubs, outliers, cores, and non-cores we ru
 
 and the program outputs the following results
 
-`<Average Jaccard similarity between cluster sets> <number of unmatched uscan clusters> <number of vertices in unmatched uscan clusters> <number of unmatched nuscan clusters> <number of vertices in unmatched nuscan clusters> <ratio of hubs> <ratio of outliers> <ratio of cores> <ratio of noncores>`
+`<eta> <eps> <mu> <thres> <Average Jaccard similarity between cluster sets> <number of unmatched uscan clusters> <number of vertices in unmatched uscan clusters> <number of unmatched nuscan clusters> <number of vertices in unmatched nuscan clusters> <ratio of hubs> <ratio of outliers> <ratio of cores> <ratio of noncores>`
 
 where all the ratios are USCAN / NUSCAN.
 The jaccard similarities are computed by iterating over the clusters in USCAN and matching them with clusters in NUSCAN that share at least half the elements of the set, where both the cluster sets are order by largest clusters to smallest.
@@ -39,7 +39,7 @@ To locally compare the quality of the clusters we compare the probabilities $P[e
 
 And this prints the following output:
 
-`<number of edges that past through both methods> <K-L divergence> <RMSE> <ratio of time sums> <difference of times> <sum of DP times> <sum of L-CLT times>`
+`<eta> <eps> <mu> <thres> <number of edges that past through both methods> <K-L divergence> <RMSE> <ratio of time sums> <difference of times> <sum of DP times> <sum of L-CLT times>`
 
 
 ### Cluster quality metrics

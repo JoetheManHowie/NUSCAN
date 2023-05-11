@@ -12,8 +12,8 @@ def main():
     u_file = sys.argv[1]
     n_file = sys.argv[2]
     # extract t from nuscan filename
-    ttt = int(n_file.split("-")[-1].split(".prob")[0])+2 
-
+    path, eta, eps, mu, end = n_file
+    thres = int(end.split(".")[0])
     # import uscan as df
     uscan = pd.read_csv(u_file, sep="\s+",names=columns)
     # import nuscan as df
@@ -22,7 +22,7 @@ def main():
     combine = pd.merge(uscan,nuscan, on=["u", 'v', 'prob', 'k'])
     # keep only edges with large enough ku and positive P[e, epsilon]
     clamp = 1e-300
-    compare = combine.loc[(combine.k>=ttt) & (combine.p_x>clamp) & (combine.p_y>clamp) ]
+    compare = combine.loc[(combine.k>=thres) & (combine.p_x>clamp) & (combine.p_y>clamp) ]
     #print(compare.sort_values(by=["k", "t_x", "t_y"]))
     # call methods for computing K-L divergence, RMSE, time saved, 
     #print(r"Number of edges with non-zero P[e, epsilon] that used Lyapunov CLT = {}".format(len(compare)))
@@ -40,7 +40,7 @@ def main():
     
     tr, ts = time_saved(t_x, t_y)
     #print(f"The time saved by NUSCAN is {ts:.4f} seconds  which is a {tr:.4f}x factor speed up")
-    print(len(compare), kl_div, rmse, tr, ts, t_x.sum(), t_y.sum())
+    print(eta, eps, mu, thres, len(compare), kl_div, rmse, tr, ts, t_x.sum(), t_y.sum())
     
 def norm_probs(p):
     '''p is a numpu array'''
