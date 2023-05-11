@@ -3,7 +3,7 @@
 import numpy as np
 import pandas as pd
 import sys
-import torch
+
 # compares cluster results between uscan and nuscan
 # ex: ./cluster_compare.py <path-to-.cluster_uscan> <path-to-.cluster_nuscan>
 
