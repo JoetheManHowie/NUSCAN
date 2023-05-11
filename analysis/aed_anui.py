@@ -3,7 +3,6 @@ from time import time
 import numpy as np
 import pandas as pd
 import sys
-import torch
 import itertools
 # for nuscan files
 # ex: ./aed_anui.py <path-to-*.cluster_nuscan> <path-to-*.prob_nuscan>
