@@ -3,21 +3,27 @@
 import numpy as np
 import pandas as pd
 import sys
-
+import warnings
+warnings.filterwarnings("ignore")
 ## compares differences between DP method and L-CLT computed P[e, epsilon] values and times to compute edges 
 ## ./compare_nuscan_to_uscan.py <path-to-.prob_uscan> <path-to-.prob_nuscan>
 
 def main():
     columns=["u", "v", "prob", "p", "k", "t"]
+    #dtye = {"u,":np.float64, "v":np.float64, "prob":np.float64, "p":np.float64, "k":np.float64, "t":np.float64}
     u_file = sys.argv[1]
     n_file = sys.argv[2]
     # extract t from nuscan filename
     path, eta, eps, mu, end = n_file.split("-")
     thres = int(end.split(".")[0])+2
+
     # import uscan as df
-    uscan = pd.read_csv(u_file, sep="\s+",names=columns)
+    uscan = pd.read_csv(u_file, sep="\s+",names=columns, on_bad_lines='skip')#, dtype=dtye)
     # import nuscan as df
-    nuscan = pd.read_csv(n_file, sep="\s+",names=columns)
+    nuscan = pd.read_csv(n_file, sep="\s+",names=columns, on_bad_lines='skip')#, dtype=dtye)
+
+    #df['column_name'] = np.isclose(df['column_name'].values, df['column_name'].astype(int).values)
+    
     # merge uscan and nuscan
     combine = pd.merge(uscan,nuscan, on=["u", 'v', 'k'])
     # keep only edges with large enough ku and positive P[e, epsilon]
