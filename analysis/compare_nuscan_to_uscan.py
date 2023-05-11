@@ -12,8 +12,8 @@ def main():
     u_file = sys.argv[1]
     n_file = sys.argv[2]
     # extract t from nuscan filename
-    path, eta, eps, mu, end = n_file
-    thres = int(end.split(".")[0])
+    path, eta, eps, mu, end = n_file.split("-")
+    thres = int(end.split(".")[0])+2
     # import uscan as df
     uscan = pd.read_csv(u_file, sep="\s+",names=columns)
     # import nuscan as df

@@ -13,7 +13,7 @@ def main():
 
     # extract the t value from nuscan file name
     #ttt = int(n_file.split("-")[-1].split(".cluster")[0])+2
-    path, eta, eps, mu, end = n_file
+    path, eta, eps, mu, end = n_file.split("-")
     thres = end.split(".")[0]
     u_data = load_data(u_file)
     n_data = load_data(n_file)
