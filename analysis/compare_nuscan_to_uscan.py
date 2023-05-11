@@ -19,7 +19,7 @@ def main():
     # import nuscan as df
     nuscan = pd.read_csv(n_file, sep="\s+",names=columns)
     # merge uscan and nuscan
-    combine = pd.merge(uscan,nuscan, on=["u", 'v', 'prob', 'k'])
+    combine = pd.merge(uscan,nuscan, on=["u", 'v', 'k'])
     # keep only edges with large enough ku and positive P[e, epsilon]
     clamp = 1e-300
     compare = combine.loc[(combine.k>=thres) & (combine.p_x>clamp) & (combine.p_y>clamp) ]
