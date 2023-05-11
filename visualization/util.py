@@ -15,4 +15,3 @@ def df_col_to_numpy(df, col):
 def multi_plot():
     ...
 
-

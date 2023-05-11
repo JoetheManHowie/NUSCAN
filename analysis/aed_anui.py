@@ -75,7 +75,7 @@ def calculate_unifiability(cluster1, cluster2, graph):
             if (u in cluster1 and v not in cluster1) or ( u not in cluster2 and v in cluster2):
                 denominator += prob 
     
-    if denominator == 0:
+    if (denominator - numerator) == 0:
         return 0
     return numerator / (denominator - numerator)
 
@@ -99,6 +99,7 @@ def AED(G, C):
     if len(C) == 0:
         return 0
     for cluster in C:
+        if (len(cluster) - 1) <1:continue
         cluster_expected_density = 0
         for i, j in itertools.combinations(cluster, 2):
             if i>j: continue
