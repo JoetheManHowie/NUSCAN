@@ -11,39 +11,15 @@ import pandas as pd
 
 def main():
     #df_set =
+    util.plot_presets()
     path = sys.argv[1]
     ext =  sys.argv[2]
-    df_set = load_all_data_sets(path, ext)
-    make_time_plot(df_set)
-
-def make_time_plot(df_set):
-    ## plot presets
-    ss = 8
-    mpl.style.use("seaborn")
-    plt.rc('axes', titlesize=ss) #fontsize of the title
-    plt.rc('axes', labelsize=ss) #fontsize of the x and y labels
-    plt.rc('legend', fontsize=ss*2/3) #fontsize of the legend
-    plt.rc('xtick', labelsize=ss) 
-    plt.rc('ytick', labelsize=ss)
-    for i in range(len(df_set)):
-        plt.subplot(3,3,1+i)
-        
-    
-
-def load_all_data_sets(path, ext):
-    df_set = []
-    for filename in os.listdir(path):
-        if filename.endswith(ext)==False: continue
-        print(filename)
-        df_set.append(load_runtime_data(filename, path))
-
-def load_runtime_data(filename, path):
-    cols = ["eta", "epsilon", "mu", "times", "cores", "clusters", "hubs", "outliers"]
-    if filename.endswith(".nuscan"):
-        cols=["eta", "epsilon", "mu", "thres", "times", "cores", "clusters", "hubs", "outliers"]
-    df = pd.read_csv(f"{path}/{filename}", names=cols, sep="\s+")
-    return df
-    
+    tag = ext.split('.')[-1]
+    df_dict = util.load_all_data_sets(path, ext)
+    for eta, eps, mu in [(0.5, 0.5, 5), (0.2, 0.5, 2), (0.5, 0.2, 2)]:
+        eta_set, eps_set, mu_set = util.get_sub_df(df_dict, eta, eps, mu)
+        util.make_time_plot_two(eta_set, eps_set, df_dict.keys(), f"{path}/plots/{tag}_eta_eps-{eta}-{eps}-{mu}-runtime.png" )
+        util.make_time_plot_one(mu_set, df_dict.keys(), f"{path}/plots/{tag}_mu-{eta}-{eps}-{mu}-runtime.png")
 
 if __name__=="__main__":
     main()
