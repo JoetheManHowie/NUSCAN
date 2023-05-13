@@ -6,6 +6,7 @@
 import os
 import sys
 import numpy as np
+import random
 from time import time
 from fileinput import FileInput
 
@@ -34,7 +35,8 @@ def clamp(x):
     else: return x
             
 def uniform():
-    return np.random.rand(1)[0]
+    return random.uniform(0, 1)
+    #return np.random.rand(1)[0]
 
 def normal():
     return np.random.normal(loc=0.5, scale=0.1)
