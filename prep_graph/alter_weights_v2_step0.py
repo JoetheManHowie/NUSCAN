@@ -8,16 +8,14 @@ import sys
 import numpy as np
 import random
 from time import time
-from fileinput import FileInput
 
 def main():
     path = sys.argv[1]
     filen = sys.argv[2]
     filep = f"{path}/{filen}"
-    base = filen.split(".")[0]
     choice = sys.argv[3]
     distro = pick_distribution(choice)
-    with FileInput(filep, inplace=True) as filename:
+    with open(filep, "r") as filename:
         for line in filename:
             edge = line.rstrip().split()
             u = edge[0]
@@ -26,8 +24,8 @@ def main():
             p = clamp(distro())
             print(u+"\t"+v+"\t"+ str(round(p, 3)))
             print(v+"\t"+u+"\t"+ str(round(p, 3)))
-    new_final = path+"/"+base+"."+choice
-    os.system("sort -k1n -k2n "+filep+" > "+new_final)
+    
+    
     
 def clamp(x):
     if x>=1: return 0.999
