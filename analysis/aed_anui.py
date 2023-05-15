@@ -83,7 +83,7 @@ def calculate_unifiability(cluster1, cluster2, graph):
 def calculate_anui(clusters, graph):
     avi = 0
     avu = 0
-    if len(clusters) > 0:
+    if len(clusters) > 1:
         avi = sum(calculate_isolatability(cluster, graph) for cluster in clusters) / len(clusters)
         avu = sum(calculate_unifiability(cluster1, cluster2, graph) for cluster1, cluster2 in itertools.combinations(clusters, 2)) / len(list(itertools.combinations(clusters, 2)))
     anui = 0

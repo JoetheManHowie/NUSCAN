@@ -7,15 +7,18 @@ import numpy as np
 def main():
     filename = sys.argv[1]
     edges = load_data(filename)
+    num_v = max(max(edges))+1
+    num_e = len(edges)//2
     adj_list = get_adj_list(edges)
     cluster_coefficient = calculate_cluster_coefficient(adj_list)
     max_degree, ave_degree = count_degrees(adj_list)
+    density = 2*num_e/(num_v*(num_v-1))
     '''
     print(f"Cluster coefficient: {cluster_coefficient}")
     print(f"Average degree: {ave_degree}")
     print(f"Maximun degree: {max_degree}")
     '''
-    print(max(max(edges))+1, len(edges)//2, cluster_coefficient, max_degree, ave_degree)
+    print(num_v, num_e, density, cluster_coefficient, max_degree, ave_degree)
     
 def load_data(filename):
     # read in graph as an edgelist from command line
