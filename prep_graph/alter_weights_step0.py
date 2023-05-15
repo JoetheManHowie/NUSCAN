@@ -12,8 +12,13 @@ def main():
     filen = sys.argv[2]
     base = filen.split(".")[0]
     choice = sys.argv[3]
+    ext = ''
+    if choice =="normal":
+        ext = ".ntemp"
+    elif choice == "uniform":
+        ext = "uniform"
     distro = pick_distribution(choice)
-    new_file = path+"/"+base+".temp"
+    new_file = path+"/"+base+ext
     os.system(f"cp {path}/{filen} {new_file}")
     with FileInput(new_file, inplace=True) as filename:
         for line in filename:
@@ -51,7 +56,7 @@ def pick_distribution(choice ):
     elif choice == "exp":
         return exponential
     else:
-        return fiftyfifty
+        return -1
         
 
 if __name__=="__main__":
