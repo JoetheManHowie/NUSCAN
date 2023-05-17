@@ -128,7 +128,10 @@ def load_edges(csv_file):
     
 
 if __name__=="__main__":
-    main()
+    if len(sys.argv) > 2:
+        main(sys.argv[3])
+    else:
+        main()
 
 '''
     numerator=0

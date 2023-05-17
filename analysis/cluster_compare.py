@@ -91,7 +91,11 @@ def ratio(x1, x2):
     elif len(x2) == 0:
         rat=0
     else:
-        rat = len(x1)/len(x2)
+        s1 = set(x1)
+        s2 = set(x2)
+        un = len(s1.union(s2))
+        intr = len(s1.intersection(s2))
+        rat = intr/un
     return rat
 
 def get_lengths(data):

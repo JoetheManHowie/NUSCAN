@@ -12,7 +12,7 @@ In Section 4 of our paper we outline four different experiments to test the effi
 
 The script [`metrics.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/analysis/metrics.py) prints the folloing information about the graph:
 
-`<number of vertices> <number of edges> <cluster coefficient of deterministic graph> <maximum degree> <average degree>`
+`<number of vertices> <number of edges> <density> <cluster coefficient of deterministic graph> <maximum degree> <average degree>`
 
 and to run the command in the terminal type `./metrics <path to formatted graph>`
 
