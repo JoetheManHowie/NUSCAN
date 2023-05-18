@@ -14,7 +14,16 @@ def main():
     num_v = max(max(edges))+1
     num_e = len(edges)//2
     adj_list = get_adj_list(edges)
+    t1=time()
     cluster_coefficient = calculate_cluster_coefficient_slow(adj_list)
+    print(f"time for single thread: {time()-t1:.4f}")
+    t1 = time()
+    cluster_coefficientt = calculate_cluster_coefficient(adj_list)
+    print(f"time for parallel: {time()-t1:.4f}")
+    if cluster_coefficient != cluster_coefficientt:
+        print("Huston, we have a problem.")
+        print(cluster_coefficientt, cluster_coefficient)
+
     max_degree, ave_degree = count_degrees(adj_list)
     density = 2*num_e/(num_v*(num_v-1))
     '''
