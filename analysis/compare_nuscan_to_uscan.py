@@ -15,7 +15,7 @@ def main():
     n_file = sys.argv[2]
     # extract t from nuscan filename
     path, eta, eps, mu, end = n_file.split("-")
-    thres = int(end.split(".")[0])+2
+    thres = int(end.split(".")[0])-2
 
     # import uscan as df
     uscan = pd.read_csv(u_file, sep="\s+",names=columns, on_bad_lines='skip')#, dtype=dtye)
@@ -46,7 +46,7 @@ def main():
     
     tr, ts = time_saved(t_x, t_y)
     #print(f"The time saved by NUSCAN is {ts:.4f} seconds  which is a {tr:.4f}x factor speed up")
-    print(eta, eps, mu, thres, len(compare), kl_div, rmse, tr, ts, t_x.sum(), t_y.sum())
+    print(eta, eps, mu, thres+2, len(compare), kl_div, rmse, tr, ts, t_x.sum(), t_y.sum())
     
 def norm_probs(p):
     '''p is a numpu array'''
