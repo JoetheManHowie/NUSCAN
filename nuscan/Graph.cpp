@@ -192,7 +192,8 @@ void Graph::saveProbability()
   for (int u = 0; u<vsize; u++)
     for (int i = 0; i<nodes[u].degree-1; i++)
       if (u<nodes[u].edges[i].end)
-	fout <<u << " "<<nodes[u].edges[i].end << " "<< nodes[u].edges[i].proba <<" "<< nodes[u].edges[i].sigma<<" "<<nodes[u].edges[i].ku<<" "<<nodes[u].edges[i].time<<"\n";
+	  fout <<u << " "<<nodes[u].edges[i].end << " "<< nodes[u].edges[i].proba <<" "<< nodes[u].edges[i].sigma<<" "<<nodes[u].edges[i].ku<<" "<<nodes[u].edges[i].time<<"\n";
+  
 }
 
 void Graph::outputLocalResult()
@@ -898,6 +899,10 @@ void Graph::summarizeCluster()
 	}
     }
   //cout<<"number of clusters+outliers"<<cluster_count<<endl;
+
+  //triangle
+  double denom = 0.0;
+  int ki = 0;
   
   int cluster_list[cluster_count];
   int cluster_real = 0;
@@ -906,13 +911,16 @@ void Graph::summarizeCluster()
   for (int i = 0; i < cluster_count; i++)
     cluster_list[i] = 0;
   for (int i = 0; i < vsize; i++)
+    {
+      ki = nodes[i].degree - 1;
+      denom += (ki * (ki-1)) / 2.00; 
       if (nodes[i].is_clustered)
 	cluster_list[nodes[i].cid] = 1;
       else if(nodes[i].type == 3)
 	cluster_list[nodes[i].cid] = 3;
       else if (nodes[i].type == 4)
 	cluster_list[nodes[i].cid] = 4;
-
+    }
   for (int i = 0; i < cluster_count; i++)
       if (cluster_list[i] == 1)
 	++cluster_real;
@@ -923,7 +931,10 @@ void Graph::summarizeCluster()
   /////////////////////////
   cout<<cluster_real<<" "; // number of clusters
   cout<<hubs_c<<" "; // number of hubs
-  cout<<outliers_c<<" "; // number of outliers 
+  cout<<outliers_c<<" "; // number of outliers
+
+  cout<<denom<<" ";
+  
   /////////////////////////
   //cout<<"number of clusters "<<cluster_real<<endl;
   //cout<<"number of hubs "<<hubs_c<<endl;  
