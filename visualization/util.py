@@ -37,7 +37,7 @@ def make_time_plot_two(df1, df2, graphname, savename, x1="eta", x2="epsilon", yc
         plt.scatter(df2[i][x2], df2[i][ycol])
         if log_flag: plt.semilogy()
         yl = list(df1[i][ycol].to_numpy()) + list(df2[i][ycol].to_numpy())
-        
+
         lab_log_lay_lim(i,xlab,ylab, yl)
         num+=1
     plt.savefig(savename)
@@ -87,7 +87,7 @@ def find_mags(yl):
     if mi==0:
         mi==-1
     return (mi, ma)
-    
+
 def plot_presets(ss=8):
     mpl.style.use("seaborn")
     plt.rc('axes', titlesize=ss) #fontsize of the title
@@ -108,6 +108,11 @@ def load_runtime_data(filename, path):
     df = pd.read_csv(f"{path}/{filename}", names=cols, sep="\s+")
     return df
 
+def load_runtime_data_no_thres(filename, path):
+    cols = ["eta", "epsilon", "mu", "time", "cores", "clusters", "hubs", "outliers"]
+    df = pd.read_csv(f"{path}/{filename}", names=cols, sep="\s+")
+    return df
+
 def load_prob_compare_data(filename, path):
     cols = ["eta", "epsilon", "mu", "thres", "edges_included", "k_l_div", 'rmse', "t_ratio", "t_diff", "t_DP", "t_LCLT"]
     df = pd.read_csv(f"{path}/{filename}", names=cols, sep="\s+")
@@ -118,10 +123,10 @@ def load_cluster_compare_data(filename, path):
     df = pd.read_csv(f"{path}/{filename}", names=cols, sep="\s+")
     return df
 
-def load_all_data_sets(path, ext, funct=load_runtime_data):
+def load_all_data_sets(path, ext, funct=load_runtime_data,sep="-"):
     df_dict = dict()
     for filename in os.listdir(path):
         if filename.endswith(ext)==False: continue
         print(filename)
-        df_dict[filename.split("-")[0]] = funct(filename, path)
+        df_dict[filename.split(sep)[0]] = funct(filename, path)
     return df_dict
