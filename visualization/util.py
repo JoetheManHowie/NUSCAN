@@ -58,9 +58,11 @@ def make_time_plot_one(df, graphname, savename, x="mu", ycol="time", xlab=r"$\mu
     #plt.show()
 
 def lab_log_lay_lim(i,xlab,ylab, yl):
-    fmi, fma = find_mags(yl)
+    if len(yl) > 0:
+        fmi, fma = find_mags(yl)
+        plt.ylim([fmi, fma])
     plt.title(i)
-    plt.ylim([fmi, fma])
+
     plt.xlabel(xlab)
     plt.ylabel(ylab)
     plt.tight_layout()
@@ -100,6 +102,21 @@ def plot_presets(ss=8):
 ####################
 ### Loading Data ###
 ####################
+
+def load_aed_anui_data(filename, path):
+    cols1 = ["eta", "epsilon", "mu", "AED", "ANI", "ANI", "ANUI"]
+    cols2 = ["eta", "epsilon", "mu", "thres", "AED", "ANI", "ANI", "ANUI"]
+    dfn = pd.DataFrame(columns=cols2)
+    dfu = pd.DataFrame(columns=cols1)
+    with open(f"{path}/{filename}", "r") as fn:
+        for line in fn:
+            stuff = [float(i) for i in line.split()]
+            if len(stuff) == len(cols2):
+                dfn = pd.concat([dfn, pd.DataFrame([stuff], columns=cols2)], axis=0, ignore_index=True)
+            else:
+                dfu = pd.concat([dfu, pd.DataFrame([stuff], columns=cols1)], axis=0, ignore_index=True)
+
+    return (dfn, dfu)
 
 def load_runtime_data(filename, path):
     cols = ["eta", "epsilon", "mu", "time", "cores", "clusters", "hubs", "outliers"]

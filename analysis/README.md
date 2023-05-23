@@ -44,7 +44,7 @@ And this prints the following output:
 
 ### Cluster quality metrics
 
-There are two metrics we used to measure the quality of clusters when there is no ground truth. The two metrics were $AED$ and $Q{ANUI}$ and we run the code [`aed_anui.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/analysis/aed_anui.py)  to calculate both values from the .cluster_nuscan and .prob_nuscan (or _uscan) files.
+There are two metrics we used to measure the quality of clusters when there is no ground truth. The two metrics were $AED$ and $Q_{ANUI}$ and we run the code [`aed_anui.py`](https://github.com/JoetheManHowie/NUSCAN/blob/main/analysis/aed_anui.py)  to calculate both values from the .cluster_nuscan and .prob_nuscan (or _uscan) files.
 
 `./aed_anui.py <path to .cluster_nuscan> <path to .prob_nuscan>`
 
