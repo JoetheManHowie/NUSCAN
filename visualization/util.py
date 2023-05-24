@@ -33,8 +33,8 @@ def make_time_plot_two(df1, df2, graphname, savename, x1="eta", x2="epsilon", yc
         plt.subplot(3,3,1+num)
         plt.plot(df1[i][x1], df1[i][ycol])
         plt.scatter(df1[i][x1], df1[i][ycol])
-        plt.plot(df2[i][x2], df2[i][ycol], marker="*")
-        plt.scatter(df2[i][x2], df2[i][ycol])
+        plt.plot(df2[i][x2], df2[i][ycol])
+        plt.scatter(df2[i][x2], df2[i][ycol], marker="*")
         if log_flag: plt.semilogy()
         yl = list(df1[i][ycol].to_numpy()) + list(df2[i][ycol].to_numpy())
 
