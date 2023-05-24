@@ -33,23 +33,15 @@ def plots(df, eta, eps, mu, path, label):
     eta_set, eps_set, mu_set = util.get_sub_df(df, eta, eps, mu)
 
     util.make_time_plot_two(eta_set, eps_set, df.keys(),
-                            f"{path}/plots/aed_eta_eps-{eta}-{eps}-{mu}-aed-{label}.png",
+                            f"{path}/plots/aed_eta_eps-{eta}-{eps}-{mu}-{label}.png",
                             x1="eta", x2="epsilon", ycol="AED",
                             xlab=r"$\eta$ and $\varepsilon$", ylab="AED", log_flag=False)
 
-    util.make_time_plot_one(mu_set, df.keys(),
-                            f"{path}/plots/aed_mu-{eta}-{eps}-{mu}-aed-{label}.png",
-                            x="mu", ycol="AED",
-                            xlab=r"$\mu$", ylab="AED", log_flag=False)
     util.make_time_plot_two(eta_set, eps_set, df.keys(),
-                            f"{path}/plots/anui_eta_eps-{eta}-{eps}-{mu}-aed-{label}.png",
+                            f"{path}/plots/anui_eta_eps-{eta}-{eps}-{mu}-{label}.png",
                             x1="eta", x2="epsilon", ycol="ANUI",
                             xlab=r"$\eta$ and $\varepsilon$", ylab=r"$Q_{ANUI}$", log_flag=False)
 
-    util.make_time_plot_one(mu_set, df.keys(),
-                            f"{path}/plots/anui_mu-{eta}-{eps}-{mu}-aed-{label}.png",
-                            x="mu", ycol="ANUI",
-                            xlab=r"$\mu$", ylab=r"$Q_{ANUI}$", log_flag=False)
 
 
 if __name__=="__main__":
