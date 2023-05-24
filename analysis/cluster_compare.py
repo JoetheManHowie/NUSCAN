@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+l#!/usr/bin/env python3
 
 import numpy as np
 import pandas as pd
@@ -12,7 +12,6 @@ def main():
     n_file = sys.argv[2]
 
     # extract the t value from nuscan file name
-    #ttt = int(n_file.split("-")[-1].split(".cluster")[0])+2
     path, eta, eps, mu, end = n_file.split("-")
     thres = end.split(".")[0]
     u_data = load_data(u_file)
@@ -25,21 +24,9 @@ def main():
     hub_ratio = ratio(u_data[1], n_data[1])
     outlier_ratio = ratio(u_data[2], n_data[2])
     core_ratio = ratio(u_data[3], n_data[3])
-    noncore_ratio = ratio(u_data[4], n_data[4])
     # ratios are unscan/nuscan
     print(eta, eps, mu, thres, jac, len(umu), count_list(umu), len(umn), count_list(umn), hub_ratio, outlier_ratio, core_ratio, noncore_ratio)
-    '''
-    print(f"Average Jaccard of cluster sets = {jac:.4f}")
-    print(f"Unmatched USCAN sets:", umu, sep="\n")
-    print(f"Number of unmatched clusters in USCAN = {len(umu)}")
-    print(f"Unmatched NUSCAN sets:", umn, sep="\n")
-    print(f"Number of unmatched clusters in NUSCAN = {len(umn)}")
-    print(f"All ratios are USCAN/NUSCAN, and in the range [0, {np.inf})")
-    print(f"hub ratio = {hub_ratio}")
-    print(f"outlier ratio = {outlier_ratio}")
-    print(f"core ratio = {core_ratio}")
-    print(f"non-core ratio = {noncore_ratio}")
-    '''
+
     
 def count_list(lis):
     return len([len(u) for u in lis])
@@ -107,7 +94,6 @@ def load_data(this_file):
     hubs = list()
     outliers = list()
     cores = list()
-    noncores = list()
     spt = "_"
     with open(this_file, "r") as mf:
         for line in mf:
@@ -118,29 +104,10 @@ def load_data(this_file):
             elif line.endswith("_o"):
                 outliers.append(int(line.split(spt)[0]))
             else:
-                '''
-                core = list()
-                cluster = list()
-                nonc = list()
-                for  num in line.split():
-                    nu, ty = num.split(spt)
-                    nn = int(nu)
-                    if ty == "n":
-                        nonc.append(nn)
-                        #print(nu, ty)
-                    elif ty =="c":
-                        print(nu, ty)
-                        core.append(nn)
-                    cluster.append(nn)
-                cores.append(core)
-                noncores.append(nonc)
-                clusters.append(cluster)
-                '''
                 cores.extend([int(num.split(spt)[0]) for num in line.split() if num.split(spt)[1]=="c"])
-                noncores.extend([int(num.split(spt)[0]) for num in line.split() if num.split(spt)[1]=="n"])
                 clusters.append([int(num.split(spt)[0]) for num in line.split()])
                 
-    return clusters, hubs, outliers, cores, noncores
+    return clusters, hubs, outliers, cores
 
 
 
