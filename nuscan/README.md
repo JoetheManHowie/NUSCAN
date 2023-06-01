@@ -1,6 +1,6 @@
 # nuscan
 --------------
-Here is the c++ code for the NUSCAN clustering algorithm. The code can be modified and integrated with other c++ applications. The algorithm is composed of four .cpp files and four .h files.
+Here is the C++ code for the NUSCAN clustering algorithm. The code can be modified and integrated with other C++ applications. The algorithm is composed of four .cpp files and four .h files.
 
 + [`Edge.h`](https://github.com/JoetheManHowie/NUSCAN/blob/main/nuscan/Edge.h) and [`Edge.cpp`](https://github.com/JoetheManHowie/NUSCAN/blob/main/nuscan/Edge.cpp)
 + [`Graph.h`](https://github.com/JoetheManHowie/NUSCAN/blob/main/nuscan/Graph.h) and [`Graph.cpp`](https://github.com/JoetheManHowie/NUSCAN/blob/main/nuscan/Graph.cpp)
@@ -13,7 +13,7 @@ Then the .cpp file [`main.cpp`](https://github.com/JoetheManHowie/NUSCAN/blob/ma
 ## Compiling
 ------------
 
-In order to compile the nuscan aglorith, download the code in this directory and have a properly formatted graph (see [`prep_graph`](https://github.com/JoetheManHowie/NUSCAN/tree/main/prep_graph)). Then in the terminal run the `make` command; this executes the code in the [`Makefile`](https://github.com/JoetheManHowie/NUSCAN/blob/main/nuscan/Makefile) which compile the .cpp files so that main is the executed file using -03 optimization. 
+In order to compile the nuscan algorithm, download the code in this directory and have a properly formatted graph (see [`prep_graph`](https://github.com/JoetheManHowie/NUSCAN/tree/main/prep_graph)). Then in the terminal run the `make` command; this executes the code in the [`Makefile`](https://github.com/JoetheManHowie/NUSCAN/blob/main/nuscan/Makefile) which compile the .cpp files so that main is the executed file using -03 optimization.
 
 
 ## Execution
@@ -29,5 +29,4 @@ The presence of the string `output` will make the program create the two output 
 
 ### Remarks
 -----------
-Special thanks to the author of [Qiu et. al.](https://ieeexplore.ieee.org/abstract/document/8476242) for providing their source code for [`uscan`](https://github.com/JoetheManHowie/NUSCAN/blob/main/uscan/) upon which the nuscan frame work was implemented.
-
+Special thanks to the author of [Qiu et. al.](https://ieeexplore.ieee.org/abstract/document/8476242) for providing their source code for [`uscan`](https://github.com/JoetheManHowie/NUSCAN/blob/main/uscan/) upon which the nuscan framework was implemented.

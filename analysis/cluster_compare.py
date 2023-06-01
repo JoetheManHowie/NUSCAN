@@ -25,15 +25,15 @@ def main():
     outlier_ratio = ratio(u_data[2], n_data[2])
     core_ratio = ratio(u_data[3], n_data[3])
     # ratios are unscan/nuscan
-    print(eta, eps, mu, thres, jac, len(umu), count_list(umu), len(umn), count_list(umn), hub_ratio, outlier_ratio, core_ratio, noncore_ratio)
+    print(eta, eps, mu, thres, jac, len(umu), count_list(umu), len(umn), count_list(umn), hub_ratio, outlier_ratio, core_ratio)
 
-    
+
 def count_list(lis):
     return len([len(u) for u in lis])
 
 def sort_lol(lis):
     return sorted(lis, key=lambda x: len(x), reverse=True)
-    
+
 def check_clusters(clus1, clus2):
     sc1 = sort_lol(clus1)
     sc2 = sort_lol(clus2)
@@ -63,7 +63,7 @@ def check_clusters(clus1, clus2):
         else:
             unmatched.append(c1)
     ## unmatched clusters
-    
+
     ### mean jaccard similarity ###
     jac = 1
     if len(jacc) !=0:
@@ -89,7 +89,7 @@ def get_lengths(data):
     return [len(d) for d in data]
 
 def load_data(this_file):
-    
+
     clusters = list()
     hubs = list()
     outliers = list()
@@ -106,7 +106,7 @@ def load_data(this_file):
             else:
                 cores.extend([int(num.split(spt)[0]) for num in line.split() if num.split(spt)[1]=="c"])
                 clusters.append([int(num.split(spt)[0]) for num in line.split()])
-                
+
     return clusters, hubs, outliers, cores
 
 
