@@ -54,9 +54,9 @@ def norm_probs(p):
     return p/p.sum()
 
 def M_val(p, q):
-    p_norm = norm_probs(p)
-    q_norm = norm_probs(q)
-    res_arr = np.array([(pp+qq)/2 for pp, qq in zip(p_norm, q_norm)])
+    # p_norm = norm_probs(p)
+    # q_norm = norm_probs(q)
+    res_arr = np.array([(pp+qq)/2 for pp, qq in zip(p, q)])#(p_norm, q_norm)])
     return res_arr
 
 def kl_divergence(p, q):
