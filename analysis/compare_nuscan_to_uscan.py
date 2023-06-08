@@ -34,7 +34,7 @@ def main():
     p_x = compare.p_x.to_numpy()
     p_y = compare.p_y.to_numpy()
 
-    #kl_div = kl_divergence(p_x, p_y)
+    kl_div = kl_divergence(p_x, p_y)
     Mval = M_val(p_x, p_y)
     jsd = 0.5 * kl_divergence(p_x, Mval) + 0.5 * kl_divergence(p_y, Mval)
     #print(f"K-L divergence = {kl_div:.4f}")
@@ -47,7 +47,7 @@ def main():
 
     tr, ts = time_saved(t_x, t_y)
     #print(f"The time saved by NUSCAN is {ts:.4f} seconds  which is a {tr:.4f}x factor speed up")
-    print(eta, eps, mu, thres-2, len(compare), jsd, rmse, tr, ts, t_x.sum(), t_y.sum())
+    print(eta, eps, mu, thres-2, len(compare), kl_div, jsd, rmse, tr, ts, t_x.sum(), t_y.sum())
 
 def norm_probs(p):
     '''p is a numpu array'''
