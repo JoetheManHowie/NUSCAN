@@ -24,8 +24,8 @@ In order to compile the nuscan aglorith, download the code in this directory and
 
 To run the clustering algorithm and produce the `.cluster_uscan` and `.prob_uscan` files, run the following command with all parameters.
 
-`./uscan <path-to-graph-file> <eta> <eps> <mu> <thres> output`
+`./uscan <path-to-graph-file> <eta> <eps> <mu> output`
 
 The presence of the string `output` will make the program create the two output files in the same directory as the input graph. The code it self will print out to the terminal the following:
 
-`<eta> <eps> <mu> <thres> <time-to-cluster> <number-of-core> <number-of-clusters> <number-of-hubs> <number-of-outliers>`
+`<eta> <eps> <mu> <time-to-cluster> <number-of-core> <number-of-clusters> <number-of-hubs> <number-of-outliers>`
